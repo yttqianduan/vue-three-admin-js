@@ -50,15 +50,15 @@
 
                 <a-form-item>
                     <a-button type="primary" html-type="submit" block >
-                        注册
+                        重置密码
                     </a-button>
                 </a-form-item>
             </a-form>
 
             <div class="text-center fs-12">
-                <router-link  href="" class="color-white" to="/forget">忘记密码</router-link> |
+                <router-link to="/" class="color-white">登录</router-link> |
                 <!-- <a href="" class="color-white">登录</a> -->
-                <router-link to="/" class="color-white">登录</router-link>
+                <router-link to="/register" class="color-white">注册</router-link>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@ import Captcha from "../../components/Captcha/index.vue";
 
 import { message } from 'ant-design-vue';
 export default {
-    name:"Register",
+    name:"Forget",
     components:{
         Captcha
     },

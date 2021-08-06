@@ -28,7 +28,7 @@
             </a-form>
 
             <div class="text-center fs-12">
-                <a href="" class="color-white">忘记密码</a> |
+                <router-link  href="" class="color-white" to="/forget">忘记密码</router-link> |
                 <!-- <a href="" class="color-white">注册</a> -->
                 <router-link class="color-white" to="/register">注册</router-link>
             </div>
