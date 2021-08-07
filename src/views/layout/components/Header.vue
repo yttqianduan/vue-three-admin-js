@@ -1,0 +1,116 @@
+<template>
+    <div id="header">
+        <div class="header-menu">
+            <a-dropdown>
+                <a class="ant-dropdown-link" @click.prevent>
+                    <img class="user-img" src="../../../assets/logo.png" alt="">
+                </a>
+                <template #overlay>
+                <a-menu>
+                    <a-menu-item key="0">
+                        <div class="menu-item">
+                            18770035996
+                        </div>
+                    </a-menu-item>
+                    
+                    <a-menu-divider />
+
+                    <a-menu-item key="1">
+                        <div class="menu-item menu-lang">
+                            <span 
+                                v-for="item in data.lang" 
+                                :key="item.value" 
+                                @click="toggleLang(item.value)"
+                                :class="{'current':data.lang_current == item.value}"
+                            >
+                                {{item.label}}
+                            </span>
+                        </div>
+                    </a-menu-item>
+
+                    <a-menu-divider />
+
+                    <a-menu-item key="3">
+                        <div class="menu-item">
+                            {{ $t("header_menu.logout") }}
+                        </div>
+                    </a-menu-item>
+                </a-menu>
+                </template>
+            </a-dropdown>
+        </div>
+    </div>
+</template>
+
+<script>
+import { reactive, toRefs } from '@vue/reactivity';
+
+// 引入语言
+import { useI18n } from "vue-i18n";
+export default {
+    name:"Header",
+    setup(){
+        // 扩展语言
+        const { locale } = useI18n({ useScope: 'global' });
+
+        // 定义数据
+        const data = reactive({
+            lang:[
+                { label:"中文",value:"ch" },
+                { label:"英文",value:"en" },
+            ],
+            lang_current:"ch",
+        });
+
+        // 使用i18n切换语言
+        const toggleLang = (lang) => {
+            locale.value = lang;
+            data.lang_current = lang
+        };
+
+        return {
+            data,
+
+            toggleLang
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+#header{
+    padding: 0 20px;
+    height: 64px;
+}
+
+.header-menu{
+    float: right;
+    margin-top: 15px;
+
+    .ant-dropdown-link{
+
+        .user-img{
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+
+.menu-item{
+    padding: 0 20px;
+    font-size: 14px;
+    font-family: "隶书";
+    color: #333;
+}
+.menu-lang{
+    color: #aeaeae;
+    span{
+        margin-right: 10px;
+    }
+
+    .current{
+        color: #333;
+    }
+}
+</style>

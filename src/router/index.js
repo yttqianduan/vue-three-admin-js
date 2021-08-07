@@ -24,7 +24,22 @@ const routes = [
         path:"/forget",
         name:"Forget",
         component:()=>import("../views/account/Forget.vue")
+    }, 
+
+    // 管理后台-首页
+    {
+        path:"/index",
+        name:"Index",
+        component:() => import ("../views/layout/Index.vue")
     },
+
+    // 管理后台-信息管理
+    {
+        path:"/newsIndex",
+        name:"NewsIndex",
+        component:() => import ("../views/layout/Index.vue")
+    },
+
     {
         path:"/about",
         name:"About",
