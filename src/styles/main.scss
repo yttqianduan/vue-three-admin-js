@@ -1,4 +1,6 @@
 @import "./normalize.scss";//引入初始的样式配置文件
+@import "./publicSass.scss";//引入初始的样式配置文件
+@import "./icon.scss";//引入icon文件
 
 // color
 .color-white{
@@ -10,7 +12,20 @@
     font-size: 12px;
 }
 
+.fs-14{
+    font-size: 14px;
+}
+.fs-18{
+    font-size: 18px;
+}
+
 // text-align
 .text-center{
     text-align: center;
 }
+
+// font-family: "隶书";
+.font-family{
+    font-family: $fontFamily;
+}
+

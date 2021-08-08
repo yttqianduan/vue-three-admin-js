@@ -1,5 +1,8 @@
 <template>
     <div id="header">
+        <div class="collapsed-button" @click="collapsedButton">
+            <svg-icon iconName="collapsed" class="collapsed-svg"/>
+        </div>
         <div class="header-menu">
             <a-dropdown>
                 <a class="ant-dropdown-link" @click.prevent>
@@ -8,7 +11,7 @@
                 <template #overlay>
                 <a-menu>
                     <a-menu-item key="0">
-                        <div class="menu-item">
+                        <div class="menu-item fs-14 font-family">
                             18770035996
                         </div>
                     </a-menu-item>
@@ -16,7 +19,7 @@
                     <a-menu-divider />
 
                     <a-menu-item key="1">
-                        <div class="menu-item menu-lang">
+                        <div class="menu-item menu-lang fs-14 font-family">
                             <span 
                                 v-for="item in data.lang" 
                                 :key="item.value" 
@@ -31,7 +34,7 @@
                     <a-menu-divider />
 
                     <a-menu-item key="3">
-                        <div class="menu-item">
+                        <div class="menu-item fs-14 font-family">
                             {{ $t("header_menu.logout") }}
                         </div>
                     </a-menu-item>
@@ -43,6 +46,7 @@
 </template>
 
 <script>
+import { getCurrentInstance } from "vue"
 import { reactive, toRefs } from '@vue/reactivity';
 
 // 引入语言
@@ -50,6 +54,9 @@ import { useI18n } from "vue-i18n";
 export default {
     name:"Header",
     setup(){
+        const { emit } = getCurrentInstance();
+        
+
         // 扩展语言
         const { locale } = useI18n({ useScope: 'global' });
 
@@ -67,11 +74,17 @@ export default {
             locale.value = lang;
             data.lang_current = lang
         };
+        
+        // 触发父组件方法，传递数据
+        const collapsedButton = ()=>{
+            emit("Collapsed")
+        }
 
         return {
             data,
 
-            toggleLang
+            toggleLang,
+            collapsedButton
         }
     }
 }
@@ -99,8 +112,6 @@ export default {
 
 .menu-item{
     padding: 0 20px;
-    font-size: 14px;
-    font-family: "隶书";
     color: #333;
 }
 .menu-lang{
@@ -112,5 +123,10 @@ export default {
     .current{
         color: #333;
     }
+}
+.collapsed-button{
+    float: left;
+    cursor: pointer;
+    font-size: 30px;
 }
 </style>

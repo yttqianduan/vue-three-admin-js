@@ -6,14 +6,14 @@
     <!-- 设置主页布局 -->
     <a-layout id="layout-main"> 
         <!-- 左侧导航 -->
-        <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
-            <LayoutAside />
+        <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible width="255">
+            <LayoutAside class="font-family fs-18" :collapsedImg="collapsed" />
         </a-layout-sider>
 
         <a-layout>
             <!-- 顶部 -->
             <a-layout-header style="background: #fff; padding: 0">
-                <LayoutHeader />
+                <LayoutHeader @Collapsed="handlerCollapsed" />
             </a-layout-header>
             
             <!-- 核心内容区域 -->
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import LayoutAside from "./components/Aside.vue";
+import LayoutAside from "./components/aside/Aside.vue";
 import LayoutHeader from "./components/Header.vue";
 import LayoutMain from "./components/Main.vue";
 
@@ -47,15 +47,22 @@ export default {
         LayoutMain
     },
 
-    setup(props){
+    setup(){
         const data = reactive({
             selectedKeys: ['1'],
-            collapsed: false,
+            collapsed: JSON.parse(localStorage.getItem('collapsed')),//左侧导航显示隐藏
         });
-
+        
+        const handlerCollapsed = (value) => {
+            const bool = !data.collapsed;
+            data.collapsed = bool;
+            localStorage.setItem("collapsed",bool)
+        }
 
         return {
             ...toRefs(data),
+
+            handlerCollapsed
         }
     },
 }

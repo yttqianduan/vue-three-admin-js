@@ -1,0 +1,25 @@
+i[class^=icom]{
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+/*图标尺寸*/
+.icon-size-21{
+    width: 21px;
+    height: 21px;
+}
+/*偏移大小*/
+.mb--5{
+    margin-bottom: -5px;
+}
+/*图标地址*/
+.icon-aside-home{ background-image: url("../assets/image/home.png");}
+.icon-aside-console{ background-image: url("../assets/image/console.png");}
+.icon-aside-user{ background-image: url("../assets/image/user.png");}
+.icon-aside-informtion{ background-image: url("../assets/image/informtion.png");}
+.icon-aside-product{ background-image: url("../assets/image/product.png");}
+
+/*svg图标大小*/
+.aside-icon{
+    font-size: 20px;
+}

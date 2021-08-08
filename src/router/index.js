@@ -1,54 +1,124 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 // import Home from "../views/Home.vue"
 const routes = [
-    // {
-    //     path:"/",
-    //     name:"Home",
-    //     component:Home
-    // },
 
     // 登录
     {
         path:"/",
         name:"Login",
-        component:()=>import("../views/account/Login.vue")
+        hidden:true,//左侧栏隐藏
+        meta:{
+            title:"登录",
+        },
+        component:()=>import("../views/account/Login.vue"),
     },
     // 注册
     {
         path:"/register",
         name:"Register",
-        component:()=>import("../views/account/Register.vue")
+        hidden:true,
+        meta:{
+            title:"注册"
+        },
+        component:()=>import("../views/account/Register.vue"),
     },
-    // 注册
+    // 重置密码
     {
         path:"/forget",
         name:"Forget",
-        component:()=>import("../views/account/Forget.vue")
+        hidden:true,
+        meta:{
+            title:"重置密码"
+        },
+        component:()=>import("../views/account/Forget.vue"),
     }, 
 
     // 管理后台-首页
     {
         path:"/index",
         name:"Index",
-        component:() => import ("../views/layout/Index.vue")
+        meta:{
+            title:"首页",
+            icon:"home"
+        },
+        component:() => import ("../views/layout/Index.vue"),
+        children:[
+            {
+                path:"/home",
+                name:"Home",
+                meta:{
+                    title:"首页",
+                    icon:"home"
+                },
+                component:() => import ("../views/home/index.vue"),
+            }
+        ]
+    },
+
+    // 管理后台-管理总台
+    {
+        path:"/adminIndex",
+        name:"AdminIndex",
+        meta:{
+            title:"管理总台",
+            icon:"console"
+        },
+        component:() => import ("../views/layout/Index.vue"),
+
+        // 管理总台子路由
+        children:[
+            {
+                path:"/role",
+                name:"Role",
+                meta:{
+                    title:"角色管理"
+                },
+                component:() => import ("../views/admin/Role.vue"),
+            },
+            {
+                path:"/user",
+                name:"User",
+                meta:{
+                    title:"用户管理",
+                },
+                component:() => import ("../views/admin/User.vue")
+            },
+        ],
+    },
+
+    // 管理后台- 会员管理
+    {
+        path:"/member",
+        name:"Member",
+        meta:{
+            title:"会员管理",
+            icon:"member"
+        },
+        component:() => import ("../views/layout/Index.vue"),
+        children:[],
+    },
+    // 管理后台-产品管理
+    {
+        path:"/product",
+        name:"Product",
+        meta:{
+            title:"产品管理",
+            icon:"product"
+        },
+        component:() => import ("../views/layout/Index.vue"),
+        children:[],
     },
 
     // 管理后台-信息管理
     {
-        path:"/newsIndex",
-        name:"NewsIndex",
-        component:() => import ("../views/layout/Index.vue")
-    },
-
-    {
-        path:"/about",
-        name:"About",
-        component:() => import ("../views/About.vue")
-    },
-    {
         path:"/news",
         name:"News",
-        component:() => import ("../views/News.vue")
+        meta:{
+            title:"信息管理",
+            icon:"info"
+        },
+        component:() => import ("../views/layout/Index.vue"),
+        children:[],
     }
 ]
 
